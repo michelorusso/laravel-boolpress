@@ -11,5 +11,7 @@ class HomeController extends Controller
     // metodo index che sarà la pagina principale in cui gli utenti atterreranno una volta loggati
     public function index() {
 
+
+        return view('admin.home');
     }
 }

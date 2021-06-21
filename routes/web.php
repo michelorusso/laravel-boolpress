@@ -18,6 +18,9 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// Gestione Pubblica Post
+Route::get('/blog', 'PostController@index')->name('blog');
+
 Route::prefix('admin')
     ->namespace('Admin')
     ->name('admin.')

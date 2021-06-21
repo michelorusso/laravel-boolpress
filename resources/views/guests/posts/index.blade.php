@@ -9,13 +9,13 @@
 
         @foreach ($posts as $post)
             
-        <div class="col-3">
+        <div class="col-4">
             <div class="card" style="width: 18rem; text-align: center">
                 <div class="card-body">
 
                   <h5 class="card-title" style=" font-size: 13px" >{{ $post->title }}</h5>
 
-                  <a href="#" class="btn btn-primary" style="font-size: 13px">Look Details
+                  <a href="{{ route('blog-page', ['slug'=> $post->slug]) }}" class="btn btn-primary" style="font-size: 13px">Look Details
                   </a>
 
                 </div>

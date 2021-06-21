@@ -19,13 +19,16 @@ class PostController extends Controller
         return view('guests.posts.index', $data);
     }
 
-    public function show($id)
+    public function show($slug)
     {
         //
-        $post = Post::findOrFail($id);
+        $post = Post::where('slug', '=', $slug)->first();
+
+        if(!$post) {
+            abort('404');
+        }
 
         $data = [
-
             'post' => $post
         ];
 

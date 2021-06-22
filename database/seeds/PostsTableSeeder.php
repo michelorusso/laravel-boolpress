@@ -16,11 +16,11 @@ class PostsTableSeeder extends Seeder
     {
         //
         for( $i = 0; $i < 5 ; $i++) {
-            $new_travel = new Post();
-            $new_travel->title = $faker->sentence(4);
-            $new_travel->content = $faker->paragraphs(4, true);
-            $new_travel->slug = Str::slug($new_travel->title, '-');
-            $new_travel->save();
+            $new_post = new Post();
+            $new_post->title = $faker->sentence(4);
+            $new_post->content = $faker->paragraphs(4, true);
+            $new_post->slug = Str::slug($new_post->title, '-');
+            $new_post->save();
 
         }
     }

@@ -9,7 +9,7 @@
 
         @foreach ($posts as $post)
             
-        <div class="col-4">
+        <div class="col-4 mt-1">
             <div class="card" style="text-align: center">
                 <div class="card-body">
 

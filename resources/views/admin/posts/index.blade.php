@@ -25,6 +25,13 @@
                   ]) }}" class="btn btn-secondary" style="font-size: 13px">Edit Post
                   </a>
 
+                  <form style="text-align: center" action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+
+                    <input type="submit" class="btn btn-danger" value="Delete" onClick="return confirm('are you sure you want to delete the post?');">
+                </form>
+
                 </div>
               </div>
         </div>

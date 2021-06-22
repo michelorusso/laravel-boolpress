@@ -13,17 +13,17 @@
             <div class="card" style="text-align: center">
                 <div class="card-body">
 
-                  <h5 class="card-title" style=" font-size: 13px" >{{ $post->title }} Gestione</h5>
+                  <h5 class="card-title" style=" font-size: 13px" >{{ $post->title }}</h5>
 
                   <a href="{{ route('admin.posts.show', [
                     'post' => $post->id
                   ]) }}" class="btn btn-primary" style="font-size: 13px">Go to post
                   </a>
 
-                  <a href="#" class="btn btn-secondary" style="font-size: 13px">Edit Post
+                  <a href="{{ route('admin.posts.edit', [
+                    'post' => $post->id
+                  ]) }}" class="btn btn-secondary" style="font-size: 13px">Edit Post
                   </a>
-
-
 
                 </div>
               </div>

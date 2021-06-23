@@ -32,6 +32,19 @@
                     <label for="content">Content</label>
                     <textarea name="content" class="form-control" id="content" cols="30" rows="10">{{ old('content') }}</textarea>
                 </div>
+                
+                <div class="form-group">
+                    <label for="category_id">Categoria</label>
+                    <select class="form-control" name="category_id" id="category_id">
+                        <div>
+                            <option value="">Empty</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </div>
+                        
+                    </select>
+                </div>
 
                 <input type="submit" class="btn btn-primary" value="Save">
             </form>

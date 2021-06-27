@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -35,9 +36,11 @@ class PostController extends Controller
     {
         //
         $categories = Category::all();
+        $tags = Tag::all();
 
         $data = [
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ];
 
         return view('admin.posts.create', $data);
@@ -55,6 +58,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|max:65000',
             'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id'
         ]);
         //
         $new_post_data = $request->all();
@@ -103,7 +107,8 @@ class PostController extends Controller
         $data = [
 
             'post' => $post,
-            'post_category' =>$post->category
+            'post_category' =>$post->category,
+            'post_tags' => $post->tags
         ];
 
         return view('admin.posts.show', $data);
@@ -143,6 +148,7 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'content' => 'required|max:65000',
             'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id'
         ]);
 
         $modify_post_data = $request->all();
@@ -178,6 +184,14 @@ class PostController extends Controller
         }
         
         $post->update($modify_post_data);
+
+        // Tags
+        if(isset($modify_post_data['tags']) && is_array($modify_post_data['tags'])) {
+            $post->tags()->sync($modify_post_data['tags']);
+        } else {
+            $post->tags()->sync([]);
+        }
+        
 
         return redirect()->route('admin.posts.show', ['post' => $post->id]);
     }

@@ -9,6 +9,14 @@
         <h4>Categoria: {{ $post_category->name }}</h4>
     @endif
 
+    <div class="mt-3 mb-3">
+        <b>Tag:</b>
+        @foreach ($post_tags as $tag)
+            {{ $tag->name }}{{ $loop->last ? '' : ', ' }}
+        @endforeach
+    </div>
+    
+
 
     <h3>{{ $post->slug }}</h3>
 

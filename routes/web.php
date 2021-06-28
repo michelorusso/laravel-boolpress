@@ -19,14 +19,20 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 // Gestione Pubblica Post
+
+// Route Blog
 Route::get('/blog', 'PostController@index')->name('blog');
 Route::get('/blog/{slug}', 'PostController@show')->name('blog-page');
 
+// Route Categories
 Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/categories/{slug}', 'CategoryController@show')->name('category-page');
 
+// Route Vuejs
+Route::get('/vue-posts', 'PostController@vuePosts')->name('vue-post');
 
 
+// Gestione Privata Post
 Route::prefix('admin')
     ->namespace('Admin')
     ->name('admin.')

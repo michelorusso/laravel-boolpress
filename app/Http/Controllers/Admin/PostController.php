@@ -88,6 +88,11 @@ class PostController extends Controller
         $new_post->fill($new_post_data);
         $new_post->save();
 
+        // Tags
+        if(isset($new_post_data['tags']) && is_array($new_post_data['tags'])) {
+            $new_post->tags()->sync($new_post_data['tags']);
+        }
+
         return redirect()->route('admin.posts.show', [
             'post' => $new_post->id
         ]);
@@ -125,10 +130,12 @@ class PostController extends Controller
         //
         $post = Post::findOrFail($id);
         $categories = Category::all();
+        $tags = Tag::all();
 
         $data = [
             'post' => $post,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ];
 
         return view('admin.posts.edit', $data);
@@ -206,8 +213,12 @@ class PostController extends Controller
     {
         //
         $post_to_delete = Post::findOrFail($id);
-        
+
+        $post_to_delete->tags()->sync([]);
+
         $post_to_delete->delete();
+
+        
 
         return redirect()->route('admin.posts.index');
     }
